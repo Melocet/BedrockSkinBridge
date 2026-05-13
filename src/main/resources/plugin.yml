@@ -1,0 +1,13 @@
+name: BedrockSkinBridge
+version: ${project.version}
+main: com.melocet.bedrockskinbridge.BedrockSkinBridge
+api-version: '1.21'
+authors: [Melocet]
+description: Bridges Bedrock player skins to the Java side — HTTP endpoint for
+  websites and a FancyNpcs hook for NPC skins, fed by the public GeyserMC API.
+website: https://github.com/Melocet/BedrockSkinBridge
+softdepend:
+  - floodgate
+  - FancyNpcs
+
+permissions: {}

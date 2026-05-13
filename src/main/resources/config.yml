@@ -1,0 +1,17 @@
+# BedrockSkinBridge configuration.
+
+# HTTP server that exposes the captured Bedrock skin URLs to external
+# consumers (typically a website or dashboard). Disable if you only want
+# the in-process FancyNpcs hook.
+#
+# Endpoints:
+#   GET /bedrock-skin?name=<java-side-name>
+#       200 -> {"name":"...", "texture_url":"http://textures.minecraft.net/..."}
+#       404 -> {"error":"not_found"}
+#   GET /health
+#       200 -> {"ok":true}
+http:
+  enabled: true
+  # The host's firewall must allow this port.
+  bind: 0.0.0.0
+  port: 8082

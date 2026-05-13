@@ -1,0 +1,25 @@
+# Build output
+target/
+build/
+out/
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data (runtime)
+bedrock-skins.json
+
+# Gradle (not used here, but in case someone tries)
+.gradle/
