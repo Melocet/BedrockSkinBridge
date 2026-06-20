@@ -110,6 +110,10 @@ public final class BedrockSkinTracker {
                     changed |= recordOne(bedrockName, entry);
                 }
                 if (changed) save();
+                // Apply the resolved Bedrock skin to the player's live profile
+                // so other Java clients see the actual Bedrock avatar instead
+                // of Floodgate's "GeyserMC" fallback texture.
+                applyToPlayer(player, entry);
             });
         });
     }
@@ -118,6 +122,26 @@ public final class BedrockSkinTracker {
     private SkinEntry extractSkinSafe(Player player) {
         try { return extractSkin(player); }
         catch (Throwable t) { return null; }
+    }
+
+    /**
+     * Push the resolved Bedrock skin onto the player's live PlayerProfile so
+     * other Java clients render the actual Bedrock avatar instead of the
+     * default Steve/Alex skin Floodgate hands out. Idempotent — if the
+     * texture is already present, nothing changes.
+     */
+    private void applyToPlayer(Player player, SkinEntry entry) {
+        if (entry == null || entry.value() == null) return;
+        try {
+            com.destroystokyo.paper.profile.PlayerProfile profile = player.getPlayerProfile();
+            profile.getProperties().removeIf(p -> "textures".equals(p.getName()));
+            profile.setProperty(new com.destroystokyo.paper.profile.ProfileProperty(
+                    "textures", entry.value(), entry.signature()));
+            player.setPlayerProfile(profile);
+        } catch (Throwable t) {
+            plugin.getLogger().fine("[bedrock-skin] applyToPlayer failed for "
+                    + player.getName() + ": " + t.getMessage());
+        }
     }
 
     /**
