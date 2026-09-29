@@ -35,6 +35,9 @@ public final class BedrockSkinBridge extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new BedrockSkinJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new NpcSkinCommandListener(this), this);
+        if (getConfig().getBoolean("ghost-block-fix.enabled", true)) {
+            getServer().getPluginManager().registerEvents(new GhostBlockFix(this), this);
+        }
 
         // Capture skins for anyone already online (server reload case).
         for (Player p : Bukkit.getOnlinePlayers()) {

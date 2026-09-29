@@ -15,3 +15,11 @@ http:
   # The host's firewall must allow this port.
   bind: 0.0.0.0
   port: 8082
+
+# Bedrock clients remove a block the moment they break it (and show one they place) before the
+# server answers. When another plugin cancels that (land claims, spawn protection, minigame
+# rules), the block often stays broken on the Bedrock player's screen until the chunk reloads.
+# With this on, the real blocks around the spot are sent again to Bedrock players right after a
+# cancelled break, place or door/lever click. Java players are never touched.
+ghost-block-fix:
+  enabled: true

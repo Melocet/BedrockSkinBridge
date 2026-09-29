@@ -26,6 +26,23 @@ texture directly from the public GeyserMC skin API
 - **FancyNpcs**, by applying the texture value + signature through the API so
   `/npc skin <npc> <bedrock-name>` works without going through Mojang.
 
+## Ghost block fix (new in 1.2.0)
+
+Bedrock clients break and place blocks on their own screen before the server
+answers. When a plugin cancels that, for example a land claim, spawn protection
+or a minigame rule, a Java client puts the block back by itself, but a Bedrock
+client often keeps showing it as broken (or the placed block as there) until
+the chunk reloads.
+
+For Bedrock players only, BedrockSkinBridge now sends the real blocks around
+the spot again after a cancelled break, place or door/trapdoor/lever click:
+once on the next tick and once a few ticks later for slow connections. It also
+resyncs the inventory after a cancelled place. Players linked to a Java account
+through Floodgate count as Bedrock too.
+
+It does not need any other plugin to know about it. Turn it off in
+`config.yml` with `ghost-block-fix.enabled: false`.
+
 ## What it does NOT do
 
 - It does not patch in-game player rendering. Geyser already handles that; if
@@ -61,6 +78,9 @@ http:
   enabled: true   # set to false if you only need the FancyNpcs hook
   bind: 0.0.0.0   # interface to bind on
   port: 8082      # firewall must allow this port for off-host consumers
+
+ghost-block-fix:
+  enabled: true   # resend blocks to Bedrock players after a cancelled break/place
 ```
 
 ## How it works

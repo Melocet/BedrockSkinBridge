@@ -4,7 +4,7 @@
 
     <groupId>com.melocet</groupId>
     <artifactId>BedrockSkinBridge</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
     <name>BedrockSkinBridge</name>
     <description>Captures Bedrock player skins through Floodgate + the GeyserMC public API
