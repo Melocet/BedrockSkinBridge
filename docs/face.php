@@ -2,7 +2,7 @@
 /**
  * Renders a Minecraft skin texture URL's face area as a 64x64 PNG.
  *
- * Companion to BedrockSkinBridge — the plugin's HTTP endpoint
+ * Companion to BedrockSkinBridge - the plugin's HTTP endpoint
  * (GET /bedrock-skin?name=<name>) hands you the raw texture URL.
  * This script downloads that 64x64 skin sheet, crops the 8x8 face
  * region at (8, 8), overlays the 8x8 hat layer at (40, 8) with
@@ -13,7 +13,7 @@
  *   /face.php?url=<URL-encoded texture URL>&size=100
  *
  * Query params:
- *   ?url=<encoded texture URL>   required — must be textures.minecraft.net
+ *   ?url=<encoded texture URL>   required - must be textures.minecraft.net
  *   ?size=<pixels>               optional, 16..256, default 100
  *
  * Cache: cache/bedrock-faces/<sha1(url+size)>.png, 7-day lifetime.
@@ -73,10 +73,10 @@ imagesavealpha($dst, true);
 $transparent = imagecolorallocatealpha($dst, 0, 0, 0, 127);
 imagefilledrectangle($dst, 0, 0, $size, $size, $transparent);
 
-// Face base — alpha blending OFF so the face's own alpha is copied verbatim.
+// Face base - alpha blending OFF so the face's own alpha is copied verbatim.
 imagecopyresized($dst, $src, 0, 0, 8, 8, $size, $size, 8, 8);
 
-// Hat overlay — alpha blending ON so transparent hat pixels pass through
+// Hat overlay - alpha blending ON so transparent hat pixels pass through
 // to the face below instead of overwriting it.
 imagealphablending($dst, true);
 imagecopyresized($dst, $src, 0, 0, 40, 8, $size, $size, 8, 8);

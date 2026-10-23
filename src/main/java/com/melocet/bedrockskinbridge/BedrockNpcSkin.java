@@ -24,7 +24,7 @@ public final class BedrockNpcSkin {
 
     /**
      * Decides whether this player should be skinned via Bedrock texture
-     * instead of /npc skin. The UUID is the source of truth — name alone
+     * instead of /npc skin. The UUID is the source of truth - name alone
      * is ambiguous between Java {@code Melocet} and Bedrock {@code Melocet~}
      * which Floodgate stripped/added at various times.
      */
@@ -57,7 +57,7 @@ public final class BedrockNpcSkin {
                     entry.value(),
                     entry.signature());
             npc.getData().setSkinData(skin);
-            // updateForAll() doesn't refresh skin texture on Java clients —
+            // updateForAll() doesn't refresh skin texture on Java clients -
             // they need the entity removed and respawned to pick up the new
             // GameProfile. Then persist so the change survives /npc reload.
             npc.removeForAll();
@@ -72,7 +72,7 @@ public final class BedrockNpcSkin {
     }
 
     /**
-     * A Floodgate UUID has its 64 most-significant bits all zero — that's
+     * A Floodgate UUID has its 64 most-significant bits all zero - that's
      * how Floodgate constructs them from the bedrock XUID. Cheap check, no
      * Floodgate API call needed (works even if Floodgate is missing).
      */

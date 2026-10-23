@@ -2,7 +2,7 @@
 
 A Paper plugin that captures Bedrock player skins through Floodgate + the public
 GeyserMC skin API and bridges them to Java-side surfaces that the standard
-Floodgate setup leaves stuck on Steve — websites, dashboards, and NPC plugins.
+Floodgate setup leaves stuck on Steve - websites, dashboards, and NPC plugins.
 
 ## Why this exists
 
@@ -16,7 +16,7 @@ a generic "GeyserMC" profile, which is what then leaks through to:
 - NPC plugins that call Mojang's session servers (the name doesn't exist there).
 
 In-game, the Bedrock player still looks correct because Geyser re-injects the
-real skin via packets — but everywhere else, you see Steve.
+real skin via packets - but everywhere else, you see Steve.
 
 BedrockSkinBridge sidesteps the failed-fallback path by reading the real
 texture directly from the public GeyserMC skin API
@@ -53,12 +53,12 @@ It does not need any other plugin to know about it. Turn it off in
 
 ## Requirements
 
-- **Paper 1.21+** (Spigot probably works too — untested).
+- **Paper 1.21+** (Spigot probably works too - untested).
 - **Java 21+** runtime.
-- **[Floodgate](https://geysermc.org/wiki/floodgate/)** — soft dependency, but
+- **[Floodgate](https://geysermc.org/wiki/floodgate/)** - soft dependency, but
   without it the plugin has nothing to capture. Geyser is not required on the
   same host.
-- **[FancyNpcs](https://fancyplugins.de/)** — optional. Only needed if you want
+- **[FancyNpcs](https://fancyplugins.de/)** - optional. Only needed if you want
   the NPC skin path.
 
 ## Installation
@@ -89,16 +89,16 @@ On `PlayerJoinEvent`, with a one-second delay so Floodgate has finished
 attaching the player's profile:
 
 1. The plugin checks `FloodgateApi.getInstance().isFloodgatePlayer(uuid)`. If
-   the player joined through Floodgate, it captures both name forms — the
+   the player joined through Floodgate, it captures both name forms - the
    Java-side name (e.g. `Melocet~` if you use the username-suffix feature) and
-   the bare Bedrock gamertag (e.g. `Melocet`) — so lookups work regardless of
+   the bare Bedrock gamertag (e.g. `Melocet`) - so lookups work regardless of
    which form the caller has.
 2. It calls `https://api.geysermc.org/v2/skin/<xuid>` asynchronously, parses
    the response, and stores the texture URL plus the signed `value` and
    `signature` strings in memory and in `bedrock-skins.json`.
 3. If the GeyserMC API has no record for that XUID (the player has never
    joined a server with GeyserMC's global API enabled, or the API is briefly
-   down), the plugin falls back to whatever `player.getPlayerProfile()` has —
+   down), the plugin falls back to whatever `player.getPlayerProfile()` has -
    usually the GeyserMC fallback texture, but better than nothing.
 
 The `bedrock-skins.json` file persists across restarts, so a player who joined
@@ -111,7 +111,7 @@ GET /bedrock-skin?name=<java-side-name>
 ```
 
 The `name` parameter accepts either the Java-side form (with whatever prefix /
-suffix Floodgate is configured to add) or the bare Bedrock gamertag — the
+suffix Floodgate is configured to add) or the bare Bedrock gamertag - the
 plugin stores under both keys.
 
 Success response:
@@ -178,9 +178,9 @@ would be welcome PRs.
   available. The plugin does not eagerly pre-fetch.
 - The skin shown matches whatever GeyserMC's API has cached for that XUID. If
   the player changes their Bedrock skin and never joins another GeyserMC
-  server in between, the cache may be stale — rejoining your own server
+  server in between, the cache may be stale - rejoining your own server
   refreshes it.
-- The HTTP endpoint is unauthenticated and open. Treat it as public — it
+- The HTTP endpoint is unauthenticated and open. Treat it as public - it
   exposes nothing more sensitive than what's already on Mojang's texture CDN.
 
 ## Building from source

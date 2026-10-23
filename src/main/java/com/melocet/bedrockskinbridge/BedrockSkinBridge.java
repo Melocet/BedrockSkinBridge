@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Lightweight helper plugin: captures Bedrock player skins at join and
- * exposes them in two places — over HTTP for the SplitCraft website, and
+ * exposes them in two places - over HTTP for the SplitCraft website, and
  * directly through the FancyNpcs API for any plugin that wants to skin
  * an NPC after a Bedrock player.
  *

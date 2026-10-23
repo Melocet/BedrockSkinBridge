@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class BedrockSkinTracker {
 
-    /** Full skin descriptor — URL for the website, value+signature for in-game skin setters. */
+    /** Full skin descriptor - URL for the website, value+signature for in-game skin setters. */
     public record SkinEntry(String url, String value, String signature) {}
 
     private final JavaPlugin plugin;
@@ -127,7 +127,7 @@ public final class BedrockSkinTracker {
     /**
      * Push the resolved Bedrock skin onto the player's live PlayerProfile so
      * other Java clients render the actual Bedrock avatar instead of the
-     * default Steve/Alex skin Floodgate hands out. Idempotent — if the
+     * default Steve/Alex skin Floodgate hands out. Idempotent - if the
      * texture is already present, nothing changes.
      */
     private void applyToPlayer(Player player, SkinEntry entry) {

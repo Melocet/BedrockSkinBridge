@@ -20,8 +20,8 @@ import java.util.UUID;
  * {@code Melocet~}), tries to look it up via Mojang, gets 404, and falls
  * back to Steve.
  *
- * Handles three command roots — {@code /npc}, {@code /fnpc},
- * {@code /fancynpcs} — and both player-issued and console-issued forms.
+ * Handles three command roots - {@code /npc}, {@code /fnpc},
+ * {@code /fancynpcs} - and both player-issued and console-issued forms.
  */
 public final class NpcSkinCommandListener implements Listener {
 
@@ -85,7 +85,7 @@ public final class NpcSkinCommandListener implements Listener {
         Player online = Bukkit.getPlayerExact(name);
         if (online != null) return online.getUniqueId();
         // Synthetic Floodgate-style UUID (MSB=0) so isFloodgateId returns true.
-        // The actual value doesn't matter — BedrockNpcSkin.apply only uses
+        // The actual value doesn't matter - BedrockNpcSkin.apply only uses
         // the name to look up the cached SkinEntry.
         return new UUID(0L, 1L);
     }

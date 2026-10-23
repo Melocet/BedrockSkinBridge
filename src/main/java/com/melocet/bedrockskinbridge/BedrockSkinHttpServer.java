@@ -13,9 +13,9 @@ import java.nio.charset.StandardCharsets;
  * Tiny HTTP server that exposes the cached Bedrock skin URLs to the
  * SplitCraft website. Endpoints:
  * <ul>
- *   <li>{@code GET /bedrock-skin?name=Melocet~} — returns
+ *   <li>{@code GET /bedrock-skin?name=Melocet~} - returns
  *       {@code {"name":..., "texture_url":...}} or 404</li>
- *   <li>{@code GET /health} — health check</li>
+ *   <li>{@code GET /health} - health check</li>
  * </ul>
  */
 public final class BedrockSkinHttpServer {
